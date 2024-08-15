@@ -1,2 +1,7 @@
-package httpserver;public class HttpServer {
+package httpserver;
+
+public class HttpServer {
+    public static void main(String[] args) {
+
+    }
 }
