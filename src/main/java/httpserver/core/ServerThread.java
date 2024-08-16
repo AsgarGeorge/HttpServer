@@ -27,25 +27,10 @@ public class ServerThread extends Thread{
        while(serverSocket.isBound() && !serverSocket.isClosed()) {
 
            Socket client = serverSocket.accept();
-
-           LOGGER.info("connection accepted: {}", client.getInetAddress());
-           InputStream inputStream = client.getInputStream();
-           OutputStream outputStream = client.getOutputStream();
-
-           String html = "<html><head><title> Java Http Server</title></head><body><h1> this is simple webserver</h1> </body></html>";
-
-           String response = "HTTP/1.1 500 OK\n" + // status code
-                   "ContentType: text/html\n" +
-                   "Content-Length:" + html.getBytes().length + "\n" + // header
-                   "\n" +             // blank line
-                   html; //"\n\r"; //+      // content for response
-           // "\n\r";          // blank line
-           outputStream.write(response.getBytes());
+           ServerWorkerThread serverWorkerThread = new ServerWorkerThread(client);
+           serverWorkerThread.run();
 
 
-           inputStream.close();
-           outputStream.close();
-           client.close();
        }
             serverSocket.close();
         } catch (IOException e) {
