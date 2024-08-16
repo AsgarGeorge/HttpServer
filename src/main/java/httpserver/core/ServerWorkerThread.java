@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+/**
+ * This class is for handling multiple connections at a time
+ */
 
 public class ServerWorkerThread extends Thread{
     private final static Logger LOGGER = LoggerFactory.getLogger(ServerWorkerThread.class);
@@ -24,15 +27,13 @@ public class ServerWorkerThread extends Thread{
 
             String html = "<html><head><title> Java Http Server</title></head><body><h1> this is simple webserver</h1> </body></html>";
 
-            String response = "HTTP/1.1 500 OK\n" + // status code
+            String response = "HTTP/1.1 500 OK\n" +
                     "ContentType: text/html\n" +
-                    "Content-Length:" + html.getBytes().length + "\n" + // header
-                    "\n" +             // blank line
-                    html; //"\n\r"; //+      // content for response
-            // "\n\r";          // blank line
+                    "Content-Length:" + html.getBytes().length + "\n" +
+                    "\n" +
+                    html;
+            sleep(5000);
             outputStream.write(response.getBytes());
-
-
             inputStream.close();
             outputStream.close();
             client.close();
@@ -40,6 +41,8 @@ public class ServerWorkerThread extends Thread{
             LOGGER.info("connection processing finished.");
         }catch (IOException e){
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -4,12 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerThread extends Thread{
+public class ServerThread extends Thread {
     private final static Logger LOGGER = LoggerFactory.getLogger(ServerThread.class);
     private int port;
     private String webroot;
@@ -23,19 +21,25 @@ public class ServerThread extends Thread{
 
     @Override
     public void run() {
-   try {
-       while(serverSocket.isBound() && !serverSocket.isClosed()) {
+        try {
+            while (serverSocket.isBound() && !serverSocket.isClosed()) {
+                Socket client = serverSocket.accept();
+                LOGGER.info("Client is accepted: {}", client.getInetAddress());
+                ServerWorkerThread serverWorkerThread = new ServerWorkerThread(client);
+                serverWorkerThread.start();
 
-           Socket client = serverSocket.accept();
-           ServerWorkerThread serverWorkerThread = new ServerWorkerThread(client);
-           serverWorkerThread.run();
 
-
-       }
-            serverSocket.close();
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (serverSocket != null) {
+                try {
+                    serverSocket.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }
-
