@@ -31,7 +31,7 @@ public class ServerThread extends Thread {
 
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            LOGGER.error("problem with setting socket",e);
         } finally {
             if (serverSocket != null) {
                 try {

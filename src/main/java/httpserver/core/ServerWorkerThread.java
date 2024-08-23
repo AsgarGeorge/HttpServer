@@ -21,28 +21,57 @@ public class ServerWorkerThread extends Thread{
 
     @Override
     public void run() {
+        InputStream inputStream =null;
+        OutputStream outputStream = null;
+
         try {
-            InputStream inputStream = client.getInputStream();
-            OutputStream outputStream = client.getOutputStream();
+             inputStream = client.getInputStream();
+             outputStream = client.getOutputStream();
+             int _byte;
+             while((_byte = inputStream.read()) >= 0){
+                 System.out.print((char)_byte);
+             }
 
-            String html = "<html><head><title> Java Http Server</title></head><body><h1> this is simple webserver</h1> </body></html>";
 
-            String response = "HTTP/1.1 500 OK\n" +
+
+             String html = "<html><head><title> Java Http Server</title></head><body><h1> this is simple webserver</h1> </body></html>";
+             String response = "HTTP/1.1 500 OK\n" +
                     "ContentType: text/html\n" +
                     "Content-Length:" + html.getBytes().length + "\n" +
                     "\n" +
                     html;
-            sleep(5000);
             outputStream.write(response.getBytes());
-            inputStream.close();
-            outputStream.close();
-            client.close();
+            //sleep(5000);
 
             LOGGER.info("connection processing finished.");
-        }catch (IOException e){
+        }catch (IOException e) {
+            LOGGER.error("problem with communication ",e);
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } finally {
+            if(inputStream != null){
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+            if(outputStream != null){
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+            if(client != null){
+
+                try {
+                    client.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }
