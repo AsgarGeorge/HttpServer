@@ -32,7 +32,6 @@ public class HttpParser {
          _byte = reader.read();
 
          if (_byte == LF) {
-            return;
          }
       }
       }
