@@ -11,3 +11,4 @@ public class HttpParsingException extends Exception{
     public HttpStatusCode getErrorCode() {
         return errorCode;
 }
+}
