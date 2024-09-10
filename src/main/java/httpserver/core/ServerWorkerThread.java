@@ -35,10 +35,10 @@ public class ServerWorkerThread extends Thread{
 
 
              String html = "<html><head><title> Java Http Server</title></head><body><h1> this is simple webserver</h1> </body></html>";
-             String response = "HTTP/1.1 500 OK\n" +
-                    "ContentType: text/html\n" +
-                    "Content-Length:" + html.getBytes().length + "\n" +
-                    "\n" +
+             String response = "HTTP/1.1 500 OK\r\n" +
+                    "ContentType: text/html\r\n" +
+                    "Content-Length:" + html.getBytes().length + "\r\n" +
+                    "\r\n" +
                     html;
             outputStream.write(response.getBytes());
             //sleep(5000);

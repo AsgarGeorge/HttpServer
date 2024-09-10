@@ -15,7 +15,6 @@ public class HttpServer {
         System.out.println("server starting");
         LOGGER.info("server starting..");
 
-
         ConfigurationManager.getInstance().loadConfiguration("src/main/resources/http.json");
         Configuration configuration = ConfigurationManager.getInstance().getCurrentConfiguration();
         LOGGER.info("port: "+ configuration.getPort());
