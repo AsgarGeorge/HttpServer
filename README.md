@@ -87,15 +87,15 @@ Example `http.json`:
 └── resources
     └── http.json                           # Configuration file
 ```
+# RESOURCES
+ - [Understand HTTP protocol - I](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+ - [Understand HTTP protocol - II](https://datatracker.ietf.org/doc/html/rfc7230)
 
-## Future Enhancements
-- Implement more advanced routing for different HTTP methods (GET, POST, etc.)
-- Add support for serving dynamic content.
-- Integrate a templating engine for serving HTML views.
-- Add middleware for logging, security, etc.
+# Acknowledgements
+ - [useful article](https://dev.to/mateuszjarzyna/build-your-own-http-server-in-java-in-less-than-one-hour-only-get-method-2k02)
+ - [youtube video](https://www.youtube.com/watch?v=FqufxoA4m70)
 
-## Contributing
-Contributions are welcome! Please fork the repository and create a pull request with your changes.
+
 
 ## License
 This project is licensed under the MIT License.
