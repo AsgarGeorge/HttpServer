@@ -37,8 +37,8 @@ This Java HTTP server reads configuration data from a file and starts a multithr
 ### Steps
 1. Clone this repository:
     ```bash
-    git clone https://github.com/yourusername/JavaHttpServer.git
-    cd JavaHttpServer
+    git clone https://github.com/AsgarGeorge/HttpServer.git
+    cd HttpServer
     ```
 
 2. Compile the project using `javac` or your preferred IDE:
