@@ -32,18 +32,25 @@ public class HttpParser {
    private void parseRequestLine(InputStreamReader reader, HttpRequest request) throws IOException {
       StringBuilder processingDataBuffer = new StringBuilder();
       int _byte;
+      boolean methodParsed = false;
+      boolean requestTargetParsed = false;
       while ((_byte = reader.read()) >= 9) {
       if (_byte == CR) {
          _byte = reader.read();
 
          if (_byte == LF) {
-            LOGGER.debug("Request Line to Process : {}", processingDataBuffer.toString());
+            LOGGER.debug("Request Line VERSION to Process : {}", processingDataBuffer.toString());
             return;
          }
       }
          if(_byte == SP) {
-            //logi
-            LOGGER.debug("Request Line to Process : {}", processingDataBuffer.toString());
+
+            if(!methodParsed){
+               LOGGER.debug("Request line METHOD to process:{}",processingDataBuffer.toString());
+               methodParsed = true;
+            } else if (!requestTargetParsed) {
+               LOGGER.debug("Request line REQ TARGET to process:{}", processingDataBuffer.toString());
+            }
             processingDataBuffer.delete(0, processingDataBuffer.length());
          }else{
             processingDataBuffer.append((char) _byte);
