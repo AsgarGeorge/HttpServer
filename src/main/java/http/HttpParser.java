@@ -15,7 +15,7 @@ public class HttpParser {
    private static final int CR = 0x0D;  //13 carriage return
    private static final int LF = 0x0A;  //10  next line
 
-   public HttpRequest parseHttpRequest(InputStream inputStream){
+   public HttpRequest parseHttpRequest(InputStream inputStream) throws HttpParsingException {
       InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.US_ASCII);
       HttpRequest request = new HttpRequest();
 
@@ -29,7 +29,7 @@ public class HttpParser {
       return request;
    }
 
-   private void parseRequestLine(InputStreamReader reader, HttpRequest request) throws IOException {
+   private void parseRequestLine(InputStreamReader reader, HttpRequest request) throws IOException, HttpParsingException {
       StringBuilder processingDataBuffer = new StringBuilder();
       int _byte;
       boolean methodParsed = false;
@@ -47,6 +47,7 @@ public class HttpParser {
 
             if(!methodParsed){
                LOGGER.debug("Request line METHOD to process:{}",processingDataBuffer.toString());
+               request.setMethod(processingDataBuffer.toString());
                methodParsed = true;
             } else if (!requestTargetParsed) {
                LOGGER.debug("Request line REQ TARGET to process:{}", processingDataBuffer.toString());
