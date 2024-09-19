@@ -10,7 +10,6 @@ This project is a simple HTTP server implemented in Java. It allows you to confi
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Project Structure](#project-structure)
-- [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 - [License](#license)
 
