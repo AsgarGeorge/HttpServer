@@ -1,6 +1,6 @@
 # Java HTTP Server
 
-This project is a simple HTTP server implemented in Java. It allows you to configure the server's port and webroot via a JSON configuration file and handles requests using multithreading.
+This project is a simple HTTP server implemented in Java. It allows you to configure the server's port and webroot via a JSON configuration file and handles requests using multithreading.the project is about the understanding underlining technology how an servers like apache , nginx works underneath the hood. and also understanding various protocals like HTTP , FTP ...etc.Also learning about the Socker programming in Java.
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -94,7 +94,6 @@ Example `http.json`:
 # Acknowledgements
  - [useful article](https://dev.to/mateuszjarzyna/build-your-own-http-server-in-java-in-less-than-one-hour-only-get-method-2k02)
  - [youtube video](https://www.youtube.com/watch?v=FqufxoA4m70)
-
 
 
 ## License
